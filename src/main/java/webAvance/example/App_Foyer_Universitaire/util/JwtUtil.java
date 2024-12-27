@@ -14,10 +14,9 @@ public class JwtUtil {
     // Clé secrète générée pour signer le JWT
     private final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
-    // Méthode pour générer un token avec un rôle formaté
+
     public String generateToken(String email, String role) {
-        // Ajouter le préfixe ROLE_ au rôle
-//        String formattedRole = "ROLE_" + role;
+
 
         return Jwts.builder()
                 .setSubject(email)  // Ajoute l'email comme sujet du token
