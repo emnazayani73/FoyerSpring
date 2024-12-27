@@ -27,7 +27,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/auth/register/etudiant", "/api/auth/login" , "/api/auth/register/utilisateur" , "/api/auth/{id}/validate").permitAll()
+                        .requestMatchers("/api/auth/register/etudiant", "/api/auth/login" ,
+                                            "/api/auth/register/utilisateur" ,
+                                            "/api/auth/{id}/validate" , "/api/chambres/**" ).permitAll()
 //                       .requestMatchers("/api/auth/register/utilisateur").hasAuthority("Admin")
                         .anyRequest().authenticated()
                 )
