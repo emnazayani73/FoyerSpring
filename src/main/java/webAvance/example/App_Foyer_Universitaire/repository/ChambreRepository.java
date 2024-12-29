@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ChambreRepository extends JpaRepository <Chambre , Long> {
     List<Chambre> findByStatut(String statut);
+
 }

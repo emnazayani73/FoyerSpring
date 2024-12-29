@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import webAvance.example.App_Foyer_Universitaire.service.UtilisateurService;
 
 @Configuration
 public class SecurityConfig {
@@ -27,13 +26,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/auth/register/etudiant", "/api/auth/login" ,
-                                            "/api/auth/register/utilisateur" ,
-                                            "/api/auth/{id}/validate" , "/api/chambres/**" ).permitAll()
-//                       .requestMatchers("/api/auth/register/utilisateur").hasAuthority("Admin")
-                        .anyRequest().authenticated()
+                        // Commented out the authentication-related code for testing
+                        .requestMatchers("/api/auth/**", "/api/etudiants/**", "/api/chambres/**","/api/paiements/**").permitAll()
+                        .anyRequest().permitAll()  // Allow all other requests
                 )
-                .csrf(csrf -> csrf.disable());
+                .csrf(csrf -> csrf.disable());  // Disable CSRF protection for now
 
         return http.build();
     }

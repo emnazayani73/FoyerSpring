@@ -2,33 +2,43 @@ package webAvance.example.App_Foyer_Universitaire.entity;
 
 import jakarta.persistence.*;
 
-    @Entity
-    @DiscriminatorValue("Etudiant")
-    public class Etudiant extends Utilisateur {
+@Entity
+@DiscriminatorValue("Etudiant")
+public class Etudiant extends Utilisateur {
+
+    @ManyToOne
+    @JoinColumn(name = "chambre_id")
+    private Chambre chambre;
+
+    private Boolean isValid;
+
+    @Column(unique = true)
+    private String cin;
 
 
+    // Getters et Setters
 
-        @ManyToOne
-        @JoinColumn(name = "chambre_id")
-        private Chambre chambre;
+    public Boolean getIsValid() {
+        return isValid;
+    }
 
-        private Boolean isValid;
+    public void setIsValid(Boolean isValid) {
+        this.isValid = isValid;
+    }
 
+    public Chambre getChambre() {
+        return chambre;
+    }
 
-        public Boolean getIsValid() {
-            return isValid;
-        }
+    public void setChambre(Chambre chambre) {
+        this.chambre = chambre;
+    }
 
-        public void setIsValid(Boolean isValid) {
-            this.isValid = isValid;
-        }
+    public String getCin() {
+        return cin;
+    }
 
-
-        public Chambre getChambre() {
-            return chambre;
-        }
-
-        public void setChambre(Chambre chambre) {
-            this.chambre = chambre;
-        }
+    public void setCin(String cin) {
+        this.cin = cin;
+    }
 }
