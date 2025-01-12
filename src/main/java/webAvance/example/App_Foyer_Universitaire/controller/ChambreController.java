@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import webAvance.example.App_Foyer_Universitaire.entity.Chambre;
+import webAvance.example.App_Foyer_Universitaire.entity.Etudiant;
 import webAvance.example.App_Foyer_Universitaire.service.ChambreService;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class ChambreController {
 
     @Autowired
     private ChambreService chambreService;
+
 
 
     @PostMapping("/create")
@@ -82,4 +84,6 @@ public class ChambreController {
         String result = chambreService.assignChambreToEtudiant(etudiantId, chambreId);
         return ResponseEntity.ok(result);
     }
+
+
 }

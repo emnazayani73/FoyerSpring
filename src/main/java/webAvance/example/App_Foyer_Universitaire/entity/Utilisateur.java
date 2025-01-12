@@ -16,7 +16,8 @@ public class Utilisateur {
     private String email;
     private String motDePasse;
     private String typeUser;
-
+    @Column( unique = true)
+    private String matricule;
 
 
     public String getTypeUser() {
@@ -73,6 +74,13 @@ public class Utilisateur {
 
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
+    }
+    public String getMatricule() {
+        return matricule;
+    }
+
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
     }
 
 

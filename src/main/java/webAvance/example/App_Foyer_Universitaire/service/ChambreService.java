@@ -86,12 +86,10 @@ public class ChambreService {
         }
 
         Etudiant etudiant = etudiantOptional.get();
-
         etudiant.setChambre(chambre);
         etudiantRepository.save(etudiant);
 
         chambre.setPlaceDejaOccupe(chambre.getPlaceDejaOccupe() + 1);
-
         if (chambre.getPlaceDejaOccupe() >= chambre.getCapacite()) {
             chambre.setStatut("Occupée");
         }
@@ -100,4 +98,9 @@ public class ChambreService {
 
         return "La chambre avec l'ID " + chambreId + " a été assignée à l'étudiant avec l'ID " + etudiantId + ".";
     }
+
+
+
+
+
 }
