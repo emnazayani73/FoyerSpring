@@ -31,9 +31,21 @@ public class SecurityConfig {
         http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/auth/register/etudiant", "/api/auth/login",  "api/auth/**",
-                                "/api/auth/register/utilisateur","/api/auth/invalides", "/api/auth/utilisateurs-specifiques",
-                                "/api/auth/{id}/validate", "/api/chambres/**", "/api/plaintes/**", "/api/statistiques/**").permitAll()
+                        .requestMatchers("/api/auth/register/etudiant", "/api/auth/login").permitAll()
+                        .requestMatchers(
+                                "/api/auth/register/utilisateur",
+                                "/api/auth/invalides",
+                                "/api/auth/utilisateurs-specifiques",
+                                "/api/auth/{id}/validate",
+                                "/api/chambres/**",
+                                "/api/statistiques/**"
+                        ).hasRole("Admin")
+                        .requestMatchers(
+                                "/api/plaintes/create"
+                        ).hasRole("Etudiant")
+                        .requestMatchers(
+                                "/api/plaintes/**"
+                        ).hasRole("ResponsableFinancier")
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable());
